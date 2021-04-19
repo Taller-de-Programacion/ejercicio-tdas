@@ -1,9 +1,14 @@
 // Ahora que tenemos una prueba de concepto, la tenemos que abstraer en
 // un TDA, porque cuando metamos código que no tenga que ver con archivos
-// no queremos que quede en el mismo lugar
+// no queremos que quede en el mismo lugar.
 // 
 // Lo vamos a codificar en el mismo archivo porque es una presentación, pero
 // en la vida real hay que mandarlo a otro archivo!
+// 
+// Compilar:
+//   gcc -pedantic -Wall -Werror paso3.c
+// Ejecutar:
+//   echo "Hola mundo" | ./a.out
 //
 
 /* ************************************************* *

@@ -3,9 +3,12 @@
 // acoplarlos.
 // Vamos a buscar enviarle todo el contenido de stdin al servidor:
 //
-// hints:
-// Para compilar:              gcc sock.o solucion_paso4.c
-// Para que exista un server:  nc -l localhost -p 7777
+// Compilar:
+//   gcc -pedantic -Wall -Werror sock.o paso5.c
+// Para que exista un server:
+//   nc -l localhost -p 7777
+// Ejecutar:
+//   echo "Hola mundo" | ./a.out
 //
 
 /* ************************************************* *
@@ -14,7 +17,7 @@
 #include <stdio.h>
 
 typedef struct {
-	FILE *file;
+    FILE *file;
 } file_reader_t;
 
 int file_reader_init(file_reader_t *self, const char *file_name);
@@ -32,28 +35,28 @@ int file_reader_foreach_chunk(file_reader_t *self);
 #define CHUNK_SIZE 4
 
 int file_reader_init(file_reader_t *self, const char *file_name) {
-	self->file = file_name ? fopen(file_name, "rb") : stdin;
-	return 0;
+    self->file = file_name ? fopen(file_name, "rb") : stdin;
+    return 0;
 }
 
 int file_reader_uninit(file_reader_t *self) {
-	if (self->file != stdin) {
-		fclose(self->file);
-	}
-	return 0;
+    if (self->file != stdin) {
+        fclose(self->file);
+    }
+    return 0;
 }
 
 int file_reader_iterate(file_reader_t *self) {
-	char chunk[CHUNK_SIZE];
+    char chunk[CHUNK_SIZE];
 
-	while (!feof(self->file)) {
-		size_t result = fread(chunk, 1, CHUNK_SIZE, self->file);
+    while (!feof(self->file)) {
+        size_t result = fread(chunk, 1, CHUNK_SIZE, self->file);
 
-		printf("\033[0;31m");
-		fwrite(chunk, 1, result, stdout);
-		printf("\033[0m");
-	}
-	return 0;
+        printf("\033[0;31m");
+        fwrite(chunk, 1, result, stdout);
+        printf("\033[0m");
+    }
+    return 0;
 }
 
 
@@ -65,16 +68,16 @@ int file_reader_iterate(file_reader_t *self) {
 #include "socket.h"
 
 int main(int argc, char const *argv[]) {
-	file_reader_t file_reader;
-	file_reader_init(&file_reader, NULL);
+    file_reader_t file_reader;
+    file_reader_init(&file_reader, NULL);
 
-	socket_t socket;
-	socket_init(&socket);
+    socket_t socket;
+    socket_init(&socket);
 
-	// cómo le pasamos el send??
-	file_reader_iterate(&file_reader);
+    // cómo le pasamos el send??
+    file_reader_iterate(&file_reader);
 
-	socket_uninit(&socket);
-	file_reader_uninit(&file_reader);
-	return 0;
+    socket_uninit(&socket);
+    file_reader_uninit(&file_reader);
+    return 0;
 }

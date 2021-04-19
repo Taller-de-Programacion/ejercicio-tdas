@@ -2,6 +2,11 @@
 // compile y que podamos ejecutarlo
 // 
 // hint: Ver man fread
+//
+// Compilar: 
+//   gcc -pedantic -Wall -Werror paso1.c
+// Ejecutar:
+//   ./a.out
 // 
 
 int main(int argc, char const *argv[]) {
