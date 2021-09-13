@@ -1,13 +1,14 @@
-// Teniendo un código que sabe leer algonos bytes de un archivo,
-// es fácil extenderlo para que lo lea completo
-//
-// hint: feof
-// 
-// Compilar:
-//   gcc -pedantic -Wall -Werror paso2.c
-// Ejecutar:
-//   ./a.out
-//
+/// Teniendo un código que sabe leer algunos bytes de un archivo,
+/// es fácil extenderlo para que lo lea completo
+/// <p>
+/// hint: ver feof y ferror
+/// <p>
+/// Compilar:
+///   gcc -pedantic -Wall -Werror paso2.c
+/// <p>
+/// Ejecutar:
+///   ./a.out
+///
 
 #include <stdio.h>
 

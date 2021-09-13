@@ -5,7 +5,7 @@
 int main(int argc, char const *argv[]) {
 	char buffer[BUFFER_SIZE];
 
-	while (!feof(stdin)) {
+	while (!feof(stdin) && !ferror(stdin)) {
 		size_t result = fread(buffer, 1, BUFFER_SIZE, stdin);
 
 		printf("\033[0;31m");

@@ -1,15 +1,19 @@
-// Entonces ahora tenemos dos TDAs socket y file_reader (y el cliente sería el 3ro?)
-// y queremos conectarlos de alguna manera para que actúen en conjunto, pero sin
-// acoplarlos.
-// Vamos a buscar enviarle todo el contenido de stdin al servidor:
-//
-// Compilar:
-//   gcc -pedantic -Wall -Werror sock.o paso5.c
-// Para que exista un server:
-//   nc -l localhost -p 7777
-// Ejecutar:
-//   echo "Hola mundo" | ./a.out
-//
+/// Entonces ahora tenemos dos TDAs socket y file_reader (y el cliente sería el 3ro?)
+/// y queremos conectarlos de alguna manera para que actúen en conjunto, pero sin
+/// acoplarlos.
+/// <p>
+/// Vamos a buscar enviarle el contenido completo de stdin al servidor:
+/// <p>
+///
+/// Compilar:
+///   gcc -pedantic -Wall -Werror sock.o paso5.c
+/// <p>
+/// Para que exista un server:
+///   nc -l localhost -p 7777
+/// <p>
+/// Ejecutar:
+///   echo "Hola mundo" | ./a.out
+///
 
 /* ************************************************* *
  * file_reader.h
@@ -74,10 +78,14 @@ int main(int argc, char const *argv[]) {
     socket_t socket;
     socket_init(&socket);
 
-    // cómo le pasamos el send??
+    // ¿cómo le "pasamos" el send??
     file_reader_iterate(&file_reader);
 
     socket_uninit(&socket);
     file_reader_uninit(&file_reader);
     return 0;
 }
+
+/// De nuevo, notar que el código del cliente es "igual de difícil" que los otros
+/// dos, y sin embargo integra la funcionalidad de los otros dos.
+///
